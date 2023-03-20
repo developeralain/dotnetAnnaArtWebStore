@@ -32,8 +32,8 @@ namespace API.Data.Migrations
                     b.Property<string>("Dimensions")
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("ImageData")
-                        .HasColumnType("BLOB");
+                    b.Property<string>("ImageUrl")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("IsOriginalAvailable")
                         .HasColumnType("INTEGER");
@@ -44,14 +44,14 @@ namespace API.Data.Migrations
                     b.Property<long>("OriginalPrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Subtype")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("PaintingSubtype")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PaintingType")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("TEXT");

@@ -13,8 +13,11 @@ builder.Services.AddDbContext<StoreContext>(opt => {
     opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 });
+builder.Services.AddCors();
 
 var app = builder.Build();
+
+// below exists middleware and ORDER matters. Above existed services registration and order did not matter. HEED ORDER BELOW!
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -22,6 +25,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// below avoids the development CORS errors when trying to access our API from our React Client
+app.UseCors(opt => 
+{
+    opt.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000");
+});
 
 app.UseAuthorization();
 
